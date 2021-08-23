@@ -1,8 +1,7 @@
 package kg.aken.NaTVOrderService_RESTAPI.controllers;
-
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
 public interface BaseCrudController <S, T>{
     @PostMapping("/save")
     S save(@RequestBody S s);

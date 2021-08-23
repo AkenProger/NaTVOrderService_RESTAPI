@@ -9,6 +9,7 @@ import java.util.List;
 @Data
 public class ChannelInputData {
     private Long channelId;
+
     @JsonFormat(shape = JsonFormat.Shape.ARRAY, pattern="dd-MM-yyyy")
     private List<Date> days;
 }

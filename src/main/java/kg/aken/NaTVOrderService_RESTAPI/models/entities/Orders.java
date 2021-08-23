@@ -15,6 +15,7 @@ public class Orders {
     private Long id;
     private String text;
     private String phone;
+    private String name;
     private String email;
     private double total_price;
     private Date edit_date;

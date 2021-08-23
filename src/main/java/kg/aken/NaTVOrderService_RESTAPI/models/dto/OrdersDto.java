@@ -11,6 +11,7 @@ public class OrdersDto {
 
     private Long id;
     private String text;
+    private String name;
     private String phone;
     private String email;
     private double total_price;

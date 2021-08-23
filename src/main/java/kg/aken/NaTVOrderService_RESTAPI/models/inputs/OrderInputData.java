@@ -6,8 +6,9 @@ import java.util.List;
 
 @Data
 public class OrderInputData {
-    private Long id;
+
     private String text;
+    private String clientName;
     private String phone;
     private String email;
     private List<ChannelInputData> channels;

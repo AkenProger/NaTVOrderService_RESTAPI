@@ -4,9 +4,10 @@ import kg.aken.NaTVOrderService_RESTAPI.dao.OrderDetailsRepository;
 import kg.aken.NaTVOrderService_RESTAPI.mapppers.OrderDetailMapper;
 import kg.aken.NaTVOrderService_RESTAPI.models.dto.OrderDetailsDto;
 import kg.aken.NaTVOrderService_RESTAPI.service.OrderDetailService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class OrderDetailServiceImpl implements OrderDetailService {
 
     OrderDetailsRepository orderDetailsRepository;

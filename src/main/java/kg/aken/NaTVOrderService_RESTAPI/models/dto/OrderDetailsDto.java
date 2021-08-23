@@ -9,6 +9,7 @@ public class OrderDetailsDto {
     private Long id;
     private ChannelsDto channels;
     private double price;
+    private OrdersDto ordersDto;
 
 
 }
