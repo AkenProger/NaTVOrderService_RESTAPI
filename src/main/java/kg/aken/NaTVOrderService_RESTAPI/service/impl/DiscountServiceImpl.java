@@ -38,11 +38,16 @@ public class DiscountServiceImpl implements DiscountService {
 
     @Override
     public DiscountsDto findById(Long id) {
-        return null;
+        return discountMapper.toDto(discountRepository.findById(id).get());
     }
 
     @Override
     public void deleteById(Long id) {
 
+    }
+
+    @Override
+    public DiscountsDto findDiscountByChannelId(Long id) {
+        return discountMapper.toDto(discountRepository.findDiscountByChannelId(id));
     }
 }

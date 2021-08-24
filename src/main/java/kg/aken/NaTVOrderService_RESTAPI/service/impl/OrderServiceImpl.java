@@ -9,6 +9,7 @@ import kg.aken.NaTVOrderService_RESTAPI.mapppers.ChannelMapper;
 import kg.aken.NaTVOrderService_RESTAPI.mapppers.OrderDetailMapper;
 import kg.aken.NaTVOrderService_RESTAPI.mapppers.OrderMapper;
 import kg.aken.NaTVOrderService_RESTAPI.mapppers.PriceMapper;
+import kg.aken.NaTVOrderService_RESTAPI.models.dto.DiscountsDto;
 import kg.aken.NaTVOrderService_RESTAPI.models.dto.OrderDetailsDto;
 import kg.aken.NaTVOrderService_RESTAPI.models.dto.OrdersDto;
 import kg.aken.NaTVOrderService_RESTAPI.models.dto.PricesDto;
@@ -34,6 +35,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Autowired
     DiscountService discountService;
+
+
 
 
     private OrderRepository orderRepository;
@@ -76,13 +79,20 @@ public class OrderServiceImpl implements OrderService {
             orderDetailsDto.setChannels(channelMapper.toDto(channelRepository.findById(x.getChannelId()).get()));
 
             PricesDto pricesDto = priceMapper.toDto(priceRepository.findPriceByChannelId(x.getChannelId()));
+            DiscountsDto discountsDto = discountService.findDiscountByChannelId(x.getChannelId());
+
+            System.out.println("Процент = "+discountsDto.getPercent());
+
             if (pricesDto != null) {
                 double sumOfSymbols = textLength.length() * pricesDto.getPrice();
-                double allSum = sumOfSymbols * x.getDays().size();
+                double discount = sumOfSymbols * discountsDto.getPercent() / 100;
+                double allSum = (sumOfSymbols - discount) * x.getDays().size();
+                System.out.println("Скидка = "+discount);
                 orderDetailsDto.setPrice(allSum);
                 OrderDetailsDto orderDetailsDto1 = orderDetailService.save(orderDetailsDto);
                 orderResponse.setOrderCost(allSum);
                 orderResponse.setAddText(ordersDto.getText());
+
             }
         });
 
